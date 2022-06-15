@@ -24,9 +24,9 @@ La siguiente orientación proporciona opciones sobre cómo manejar la interrupci
 
 ## Opción 1: Crea un codespace nuevo en otra región
 
-En caso de que haya una interrupción regional, te sugerimos volver a crear tu codespace en una región no afectada para seguir trabajando. Este codespace nuevo tendrá todos los cambios desde tu última subida en {% data variables.product.prodname_dotcom %}. For information on manually setting another region, see "[Setting your default region for Codespaces](/codespaces/managing-your-codespaces/setting-your-default-region-for-codespaces)."
+En caso de que haya una interrupción regional, te sugerimos volver a crear tu codespace en una región no afectada para seguir trabajando. Este codespace nuevo tendrá todos los cambios desde tu última subida en {% data variables.product.prodname_dotcom %}. Para obtener más información sobre cómo configurar otra región manualmente, consulta la sección "[Configurar tu región predeterminada para los Codespaces](/codespaces/managing-your-codespaces/setting-your-default-region-for-codespaces)".
 
-Puedes optimizar el tiempo de recuperación si configuras un `devcontainer.json` en el repositorio de un proyecto, el cual te permita definir las herramientas, tiempos de ejecución, configuración del editor, extensiones y otros tipos de configuración necesarios para restablecer el ambiente de desarrollo automáticamente. Para obtener más información, consulta la sección "[Configurar Codespaces para tu proyecto](/codespaces/setting-up-your-codespace/configuring-codespaces-for-your-project)".
+Puedes optimizar el tiempo de recuperación si configuras un `devcontainer.json` en el repositorio de un proyecto, el cual te permita definir las herramientas, tiempos de ejecución, configuración del editor, extensiones y otros tipos de configuración necesarios para restablecer el ambiente de desarrollo automáticamente. Para obtener más información, consulta la sección "[Introducción a los contenedores dev](/codespaces/setting-up-your-codespace/configuring-codespaces-for-your-project)".
 
 ## Opción 2: esperar para la recuperación
 
@@ -42,7 +42,7 @@ Si bien esta opción no te configura un ambiente de desarrollo, te permitirá ha
 
 ## Opción 4: Utiliza los contenedores remotos y Docker para crear un ambiente contenido local
 
-Si tu repositorio tiene un `devcontainer.json`, considera utilizar la [extensión de contenedores remotos](https://code.visualstudio.com/docs/remote/containers#_quick-start-open-a-git-repository-or-github-pr-in-an-isolated-container-volume) en Visual Studio Code para crear y adjuntarlo a un contenedor de desarrollo logal para tu repositorio. El tiempo de configuración para esta opción variará dependiendo de tus especificaciones locales y de la complejidad de tu configuración de contenedor dev.
+Si tu repositorio tiene un `devontainer.json`, considera utilizar la [extensión de contenedores remotos](https://code.visualstudio.com/docs/remote/containers#_quick-start-open-a-git-repository-or-github-pr-in-an-isolated-container-volume) en {% data variables.product.prodname_vscode %} para crear y adjuntar un contenedor de desarrollo local para tu repositorio. El tiempo de configuración para esta opción variará dependiendo de tus especificaciones locales y de la complejidad de tu configuración de contenedor dev.
 
 {% note %}
 

@@ -2,8 +2,8 @@
 title: Identificar e autorizar usuários para aplicativos GitHub
 intro: '{% data reusables.shortdesc.identifying_and_authorizing_github_apps %}'
 redirect_from:
-  - /early-access/integrations/user-identification-authorization/
-  - /apps/building-integrations/setting-up-and-registering-github-apps/identifying-users-for-github-apps/
+  - /early-access/integrations/user-identification-authorization
+  - /apps/building-integrations/setting-up-and-registering-github-apps/identifying-users-for-github-apps
   - /apps/building-github-apps/identifying-and-authorizing-users-for-github-apps
   - /developers/apps/identifying-and-authorizing-users-for-github-apps
 versions:
@@ -26,11 +26,7 @@ Quando o seu aplicativo GitHub age em nome de um usuário, ele realiza solicita�
 
 Para autorizar usuários para aplicativos-padrão executados no navegador, use o [fluxo de aplicativo web](#web-application-flow).
 
-{% ifversion fpt or ghae or ghes > 3.0 or ghec %}
-
 Para autorizar usuários para aplicativos sem acesso direto ao navegador, como ferramentas de CLI ou gerentes de credenciais do Git, use o [fluxo de dispositivos](#device-flow). O fluxo de dispositivo usa o OAuth 2.0 [Concessão de autorização do dispositivo](https://tools.ietf.org/html/rfc8628).
-
-{% endif %}
 
 ## Fluxo do aplicativo web
 
@@ -51,13 +47,13 @@ Quando seu aplicativo GitHub especifica um parâmetro do `login`, ele solicita a
 
 #### Parâmetros
 
-| Nome           | Tipo     | Descrição                                                                                                                                                                                                                                                                                                                                                                                         |
-| -------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `client_id`    | `string` | **Obrigatório.** O ID do cliente para o seu aplicativo GitHub. Você pode encontrá-lo em suas [configurações do aplicativo GitHub](https://github.com/settings/apps) quando você selecionar seu aplicativo. **Observação:** O ID do aplicativo e o ID do cliente não são iguais e não são intercambiáveis.                                                                                         |
-| `redirect_uri` | `string` | A URL no seu aplicativo para o qual os usuários serão enviados após a autorização. Este deve ser um match exato para {% ifversion fpt or ghes > 3.0 or ghec %} um dos URLs fornecidos como uma **URL de Callback**{% else %} a URL fornecida no campo de **URL de callback de autorização do usuário**{% endif %} ao configurar o aplicativo GitHub e não pode conter nenhum parâmetro adicional. |
-| `estado`       | `string` | Isso deve conter uma string aleatória para proteger contra ataques falsificados e pode conter quaisquer outros dados arbitrários.                                                                                                                                                                                                                                                                 |
-| `login`        | `string` | Sugere uma conta específica para iniciar a sessão e autorizar o aplicativo.                                                                                                                                                                                                                                                                                                                       |
-| `allow_signup` | `string` | Independentemente de os usuários autenticados ou não atenticados terem a opção de iscrever-se em {% data variables.product.prodname_dotcom %} durante o fluxo do OAuth. O padrão é `verdadeiro`. Use `falso` quando uma política proibir inscrições.                                                                                                                                              |
+| Nome           | Tipo     | Descrição                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| -------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `client_id`    | `string` | **Obrigatório.** O ID do cliente para o seu aplicativo GitHub. Você pode encontrá-lo em suas [configurações do aplicativo GitHub](https://github.com/settings/apps) quando você selecionar seu aplicativo. **Observação:** O ID do aplicativo e o ID do cliente não são iguais e não são intercambiáveis.                                                                                                                   |
+| `redirect_uri` | `string` | A URL no seu aplicativo para o qual os usuários serão enviados após a autorização. Este deve ser uma correspondência exata para {% ifversion fpt or ghes or ghec %} um dos URLs fornecidos como uma **URL de chamada de retorno**{% else %} ao URL fornecido no campo de **URL de chamada de retorno de autorização do usuário**{% endif %} ao configurar o aplicativo GitHub e não pode conter nenhum parâmetro adicional. |
+| `estado`       | `string` | Isso deve conter uma string aleatória para proteger contra ataques falsificados e pode conter quaisquer outros dados arbitrários.                                                                                                                                                                                                                                                                                           |
+| `login`        | `string` | Sugere uma conta específica para iniciar a sessão e autorizar o aplicativo.                                                                                                                                                                                                                                                                                                                                                 |
+| `allow_signup` | `string` | Independentemente de os usuários autenticados ou não atenticados terem a opção de iscrever-se em {% data variables.product.prodname_dotcom %} durante o fluxo do OAuth. O padrão é `verdadeiro`. Use `falso` quando uma política proibir inscrições.                                                                                                                                                                        |
 
 {% note %}
 
@@ -85,13 +81,13 @@ Faça um pedido para o seguinte ponto de extremidade para receber um token de ac
 
 #### Parâmetros
 
-| Nome            | Tipo     | Descrição                                                                                                                                                                                                                                                                                                                                                                                         |
-| --------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `client_id`     | `string` | **Obrigatório.** O ID do cliente para o seu aplicativo GitHub.                                                                                                                                                                                                                                                                                                                                    |
-| `client_secret` | `string` | **Obrigatório.** O segredo do cliente do seu aplicativo GitHub.                                                                                                                                                                                                                                                                                                                                   |
-| `código`        | `string` | **Obrigatório.** O código que você recebeu como resposta ao Passo 1.                                                                                                                                                                                                                                                                                                                              |
-| `redirect_uri`  | `string` | A URL no seu aplicativo para o qual os usuários serão enviados após a autorização. Este deve ser um match exato para {% ifversion fpt or ghes > 3.0 or ghec %} um dos URLs fornecidos como uma **URL de Callback**{% else %} a URL fornecida no campo de **URL de callback de autorização do usuário**{% endif %} ao configurar o aplicativo GitHub e não pode conter nenhum parâmetro adicional. |
-| `estado`        | `string` | A string aleatória inexplicável que você forneceu na etapa 1.                                                                                                                                                                                                                                                                                                                                     |
+| Nome            | Tipo     | Descrição                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| --------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `client_id`     | `string` | **Obrigatório.** O ID do cliente para o seu aplicativo GitHub.                                                                                                                                                                                                                                                                                                                                                              |
+| `client_secret` | `string` | **Obrigatório.** O segredo do cliente do seu aplicativo GitHub.                                                                                                                                                                                                                                                                                                                                                             |
+| `código`        | `string` | **Obrigatório.** O código que você recebeu como resposta ao Passo 1.                                                                                                                                                                                                                                                                                                                                                        |
+| `redirect_uri`  | `string` | A URL no seu aplicativo para o qual os usuários serão enviados após a autorização. Este deve ser uma correspondência exata para {% ifversion fpt or ghes or ghec %} um dos URLs fornecidos como uma **URL de chamada de retorno**{% else %} ao URL fornecido no campo de **URL de chamada de retorno de autorização do usuário**{% endif %} ao configurar o aplicativo GitHub e não pode conter nenhum parâmetro adicional. |
+| `estado`        | `string` | A string aleatória inexplicável que você forneceu na etapa 1.                                                                                                                                                                                                                                                                                                                                                               |
 
 #### Resposta
 
@@ -99,9 +95,9 @@ Por padrão, a resposta assume o seguinte formato. Os parâmetros de resposta `e
 
 ```json
 {
-  "access_token": "{% ifversion fpt or ghes > 3.1 or ghae-next or ghec %}ghu_16C7e42F292c6912E7710c838347Ae178B4a{% else %}e72e16c7e42f292c6912e7710c838347ae178b4a{% endif %}",
+  "access_token": "{% ifversion fpt or ghes > 3.1 or ghae or ghec %}ghu_16C7e42F292c6912E7710c838347Ae178B4a{% else %}e72e16c7e42f292c6912e7710c838347ae178b4a{% endif %}",
   "expires_in": 28800,
-  "refresh_token": "{% ifversion fpt or ghes > 3.1 or ghae-next or ghec %}ghr_1B4a2e77838347a7E420ce178F2E7c6912E169246c34E1ccbF66C46812d16D5B1A9Dc86A1498{% else %}r1.c1b4a2e77838347a7e420ce178f2e7c6912e1692{% endif %}",
+  "refresh_token": "{% ifversion fpt or ghes > 3.1 or ghae or ghec %}ghr_1B4a2e77838347a7E420ce178F2E7c6912E169246c34E1ccbF66C46812d16D5B1A9Dc86A1498{% else %}r1.c1b4a2e77838347a7e420ce178f2e7c6912e1692{% endif %}",
   "refresh_token_expires_in": 15811200,
   "scope": "",
   "token_type": "bearer"
@@ -121,8 +117,6 @@ Por exemplo, no cURL você pode definir o cabeçalho de autorização da seguint
 curl -H "Authorization: token OAUTH-TOKEN" {% data variables.product.api_url_pre %}/user
 ```
 
-{% ifversion fpt or ghae or ghes > 3.0 or ghec %}
-
 ## Fluxo de dispositivo
 
 {% note %}
@@ -133,12 +127,9 @@ curl -H "Authorization: token OAUTH-TOKEN" {% data variables.product.api_url_pre
 
 O fluxo de dispositivos permite que você autorize usuários para um aplicativo sem cabeçalho, como uma ferramenta de CLI ou um gerenciador de credenciais do Git.
 
-Para obter mais informações sobre autorização de usuários que usam o fluxo do dispositivo, consulte "[Autorizar aplicativos OAuth](/developers/apps/authorizing-oauth-apps#device-flow)".
-
-{% endif %}
+{% ifversion device-flow-is-opt-in %}Antes de poder usar usar o fluxo do dispositivo para identificar e autorizar usuários, primeiro você deve habilitá-lo nas configurações do aplicativo. Para obter mais informações sobre como habilitar o fluxo do dispositivo, consulte "[Modificando um aplicativo GitHub](/developers/apps/managing-github-apps/modifying-a-github-app)". {% endif %}Para obter mais informações sobre autorização de usuários que usam o fluxo do dispositivo, consulte "[Autorizar aplicativos OAuth](/developers/apps/authorizing-oauth-apps#device-flow)."
 
 ## Verifique quais recursos de instalação um usuário pode acessar
-
 
 Depois de ter um token OAuth para um usuário, você pode verificar quais instalações o usuário poderá acessar.
 
@@ -158,7 +149,7 @@ Se um usuário revogar sua autorização de um aplicativo GitHub, o aplicativo r
 
 ## Permissões no nível do usuário
 
-Você pode adicionar permissões de nível de usuário ao seu aplicativo GitHub para acessar os recursos de usuários, como, por exemplo, e-mails de usuários, concedidos por usuários individuais como parte do fluxo de autorização do usuário [](#identifying-users-on-your-site). As permissões de nível de usuário diferem das [permissões do repositório do nível de organização](/rest/reference/permissions-required-for-github-apps), que são concedidas no momento da instalação em uma conta de organização ou usuário.
+Você pode adicionar permissões de nível de usuário ao seu aplicativo GitHub para acessar os recursos de usuários, como, por exemplo, e-mails de usuários, concedidos por usuários individuais como parte do fluxo de autorização do usuário [](#identifying-users-on-your-site). As permissões de nível de usuário diferem das [permissões do repositório do nível de organização](/rest/reference/permissions-required-for-github-apps), que são concedidas no momento da instalação em uma conta de organização ou pessoal.
 
 Você pode selecionar permissões de nível de usuário nas configurações do seu aplicativo GitHub na seção **Permissões de usuário** na página **Permissões & webhooks**. Para obter mais informações sobre como selecionar permissões, consulte "[Editando permissões de um aplicativo GitHub](/apps/managing-github-apps/editing-a-github-app-s-permissions/)".
 
@@ -168,7 +159,7 @@ Como as permissões de nível de usuário são concedidas em uma base de usuári
 
 ## Solicitações de usuário para servidor
 
-Embora a maior parte da interação da sua API deva ocorrer usando os tokens de acesso de servidor para servidor, certos pontos de extremidade permitem que você execute ações por meio da API usando um token de acesso do usuário. Your app can make the following requests using [GraphQL v4]({% ifversion ghec %}/free-pro-team@latest{% endif %}/graphql) or [REST v3](/rest) endpoints.
+Embora a maior parte da interação da sua API deva ocorrer usando os tokens de acesso de servidor para servidor, certos pontos de extremidade permitem que você execute ações por meio da API usando um token de acesso do usuário. Seu aplicativo pode fazer as seguintes solicitações usando pontos de extremidade do [GraphQL v4]({% ifversion ghec %}/free-pro-team@latest{% endif %}/graphql) ou [REST v3](/rest).
 
 ### Pontos de extremidade compatíveis
 
@@ -240,16 +231,16 @@ Embora a maior parte da interação da sua API deva ocorrer usando os tokens de 
 
 #### Status da implementação
 
-* [Listar status de implementação](/rest/reference/repos#list-deployment-statuses)
-* [Criar um status de implementação](/rest/reference/repos#create-a-deployment-status)
-* [Obter um status de implementação](/rest/reference/repos#get-a-deployment-status)
+* [Listar status de implementação](/rest/reference/deployments#list-deployment-statuses)
+* [Criar um status de implementação](/rest/reference/deployments#create-a-deployment-status)
+* [Obter um status de implementação](/rest/reference/deployments#get-a-deployment-status)
 
 #### Implantações
 
-* [Listar implementações](/rest/reference/repos#list-deployments)
-* [Criar uma implementação](/rest/reference/repos#create-a-deployment)
-* [Get a deployment](/rest/reference/repos#get-a-deployment){% ifversion fpt or ghes or ghae or ghec %}
-* [Excluir um deploy](/rest/reference/repos#delete-a-deployment){% endif %}
+* [Listar implementações](/rest/reference/deployments#list-deployments)
+* [Criar uma implementação](/rest/reference/deployments#create-a-deployment)
+* [Obter uma implantação](/rest/reference/deployments#get-a-deployment)
+* [Excluir uma implantação](/rest/reference/deployments#delete-a-deployment)
 
 #### Eventos
 
@@ -272,7 +263,8 @@ Embora a maior parte da interação da sua API deva ocorrer usando os tokens de 
 
 #### Refs do Git
 
-* [Criar uma referência](/rest/reference/git#create-a-reference)* [Obter uma referência](/rest/reference/git#get-a-reference)
+* [Criar referência](/rest/reference/git#create-a-reference)
+* [Obter uma referência](/rest/reference/git#get-a-reference)
 * [Lista de referências correspondentes](/rest/reference/git#list-matching-references)
 * [Atualizar uma referência](/rest/reference/git#update-a-reference)
 * [Excluir uma referência](/rest/reference/git#delete-a-reference)
@@ -430,14 +422,12 @@ Embora a maior parte da interação da sua API deva ocorrer usando os tokens de 
 * [Remover a aplicação do hook pre-receive para uma organização](/enterprise/user/rest/reference/enterprise-admin#remove-pre-receive-hook-enforcement-for-an-organization)
 {% endif %}
 
-{% ifversion fpt or ghes or ghae or ghec %}
 #### Projetos da aquipe da organização
 
 * [Listar projetos da equipe](/rest/reference/teams#list-team-projects)
 * [Verificar permissões da equipe para um projeto](/rest/reference/teams#check-team-permissions-for-a-project)
 * [Adicionar ou atualizar as permissões do projeto da equipe](/rest/reference/teams#add-or-update-team-project-permissions)
 * [Remover um projeto de uma equipe](/rest/reference/teams#remove-a-project-from-a-team)
-{% endif %}
 
 #### Repositórios da equipe da organização
 
@@ -449,8 +439,8 @@ Embora a maior parte da interação da sua API deva ocorrer usando os tokens de 
 {% ifversion fpt or ghec %}
 #### Sincronizar equipe da organização
 
-* [Listar grupos de idp para uma equipe](/rest/reference/teams#list-idp-groups-for-a-team)
-* [Criar ou atualizar conexões do grupo de idp](/rest/reference/teams#create-or-update-idp-group-connections)
+* [Listar grupos de IdP para uma equipe](/rest/reference/teams#list-idp-groups-for-a-team)
+* [Criar ou atualizar conexões de grupo de IdP](/rest/reference/teams#create-or-update-idp-group-connections)
 * [Listar grupos de IdP para uma organização](/rest/reference/teams#list-idp-groups-for-an-organization)
 {% endif %}
 
@@ -583,7 +573,7 @@ Embora a maior parte da interação da sua API deva ocorrer usando os tokens de 
 
 #### Reações
 
-{% ifversion fpt or ghes or ghae or ghec %}* [Delete a reaction](/rest/reference/reactions#delete-a-reaction-legacy){% else %}* [Delete a reaction](/rest/reference/reactions#delete-a-reaction){% endif %}
+* [Excluir uma reação](/rest/reference/reactions)
 * [Listar reações para um comentário de commit](/rest/reference/reactions#list-reactions-for-a-commit-comment)
 * [Criar reação para um comentário de commit](/rest/reference/reactions#create-reaction-for-a-commit-comment)
 * [Listar reações para um problema](/rest/reference/reactions#list-reactions-for-an-issue)
@@ -595,13 +585,13 @@ Embora a maior parte da interação da sua API deva ocorrer usando os tokens de 
 * [Listar reações para um comentário de discussão de equipe](/rest/reference/reactions#list-reactions-for-a-team-discussion-comment)
 * [Criar reação para um comentário de discussão em equipe](/rest/reference/reactions#create-reaction-for-a-team-discussion-comment)
 * [Listar reações para uma discussão de equipe](/rest/reference/reactions#list-reactions-for-a-team-discussion)
-* [Create reaction for a team discussion](/rest/reference/reactions#create-reaction-for-a-team-discussion){% ifversion fpt or ghes or ghae or ghec %}
+* [Criar reação para uma discussão em equipe](/rest/reference/reactions#create-reaction-for-a-team-discussion)
 * [Excluir uma reação de comentário de commit](/rest/reference/reactions#delete-a-commit-comment-reaction)
 * [Excluir uma reação do problema](/rest/reference/reactions#delete-an-issue-reaction)
 * [Excluir uma reação a um comentário do commit](/rest/reference/reactions#delete-an-issue-comment-reaction)
 * [Excluir reação de comentário do pull request](/rest/reference/reactions#delete-a-pull-request-comment-reaction)
 * [Excluir reação para discussão em equipe](/rest/reference/reactions#delete-team-discussion-reaction)
-* [Excluir reação de comentário para discussão de equipe](/rest/reference/reactions#delete-team-discussion-comment-reaction){% endif %}
+* [Excluir reação para discussão em equipe](/rest/reference/reactions#delete-team-discussion-comment-reaction)
 
 #### Repositórios
 
@@ -610,7 +600,7 @@ Embora a maior parte da interação da sua API deva ocorrer usando os tokens de 
 * [Obter um repositório](/rest/reference/repos#get-a-repository)
 * [Atualizar um repositório](/rest/reference/repos#update-a-repository)
 * [Excluir um repositório](/rest/reference/repos#delete-a-repository)
-* [Comparar dois commits](/rest/reference/repos#compare-two-commits)
+* [Comparar dois commits](/rest/reference/commits#compare-two-commits)
 * [Listar contribuidores do repositório](/rest/reference/repos#list-repository-contributors)
 * [Listar bifurcações](/rest/reference/repos#list-forks)
 * [Criar uma bifurcação](/rest/reference/repos#create-a-fork)
@@ -642,68 +632,68 @@ Embora a maior parte da interação da sua API deva ocorrer usando os tokens de 
 
 #### Branches do repositório
 
-* [Listar branches](/rest/reference/repos#list-branches)
-* [Obter um branch](/rest/reference/repos#get-a-branch)
-* [Obter proteção do branch](/rest/reference/repos#get-branch-protection)
-* [Atualizar proteção do branch](/rest/reference/repos#update-branch-protection)
-* [Excluir proteção do branch](/rest/reference/repos#delete-branch-protection)
-* [Obter proteção do branch do administrador](/rest/reference/repos#get-admin-branch-protection)
-* [Definir proteção do branch de administrador](/rest/reference/repos#set-admin-branch-protection)
-* [Excluir proteção do branch de administrador](/rest/reference/repos#delete-admin-branch-protection)
-* [Obter proteção de revisão do pull request](/rest/reference/repos#get-pull-request-review-protection)
-* [Atualizar proteção de revisão do pull request](/rest/reference/repos#update-pull-request-review-protection)
-* [Excluir proteção de revisão do pull request](/rest/reference/repos#delete-pull-request-review-protection)
-* [Obter proteção de assinatura do commit](/rest/reference/repos#get-commit-signature-protection)
-* [Criar proteção de assinatura do commit](/rest/reference/repos#create-commit-signature-protection)
-* [Excluir proteção de assinatura do commit](/rest/reference/repos#delete-commit-signature-protection)
-* [Obter proteção contra verificações de status](/rest/reference/repos#get-status-checks-protection)
-* [Atualizar proteção da verificação de status](/rest/reference/repos#update-status-check-protection)
-* [Remover proteção da verificação de status](/rest/reference/repos#remove-status-check-protection)
-* [Obter todos os contextos de verificação de status](/rest/reference/repos#get-all-status-check-contexts)
-* [Adicionar contextos de verificação de status](/rest/reference/repos#add-status-check-contexts)
-* [Definir contextos de verificação de status](/rest/reference/repos#set-status-check-contexts)
-* [Remover contextos de verificação de status](/rest/reference/repos#remove-status-check-contexts)
-* [Obter restrições de acesso](/rest/reference/repos#get-access-restrictions)
-* [Excluir restrições de acesso](/rest/reference/repos#delete-access-restrictions)
+* [Listar branches](/rest/reference/branches#list-branches)
+* [Obter um branch](/rest/reference/branches#get-a-branch)
+* [Obter proteção do branch](/rest/reference/branches#get-branch-protection)
+* [Atualizar proteção do branch](/rest/reference/branches#update-branch-protection)
+* [Excluir proteção do branch](/rest/reference/branches#delete-branch-protection)
+* [Obter proteção do branch do administrador](/rest/reference/branches#get-admin-branch-protection)
+* [Definir proteção do branch de administrador](/rest/reference/branches#set-admin-branch-protection)
+* [Excluir proteção do branch de administrador](/rest/reference/branches#delete-admin-branch-protection)
+* [Obter proteção de revisão do pull request](/rest/reference/branches#get-pull-request-review-protection)
+* [Atualizar proteção de revisão do pull request](/rest/reference/branches#update-pull-request-review-protection)
+* [Excluir proteção de revisão do pull request](/rest/reference/branches#delete-pull-request-review-protection)
+* [Obter proteção de assinatura do commit](/rest/reference/branches#get-commit-signature-protection)
+* [Criar proteção de assinatura do commit](/rest/reference/branches#create-commit-signature-protection)
+* [Excluir proteção de assinatura do commit](/rest/reference/branches#delete-commit-signature-protection)
+* [Obter proteção contra verificações de status](/rest/reference/branches#get-status-checks-protection)
+* [Atualizar proteção da verificação de status](/rest/reference/branches#update-status-check-protection)
+* [Remover proteção da verificação de status](/rest/reference/branches#remove-status-check-protection)
+* [Obter todos os contextos de verificação de status](/rest/reference/branches#get-all-status-check-contexts)
+* [Adicionar contextos de verificação de status](/rest/reference/branches#add-status-check-contexts)
+* [Definir contextos de verificação de status](/rest/reference/branches#set-status-check-contexts)
+* [Remover contextos de verificação de status](/rest/reference/branches#remove-status-check-contexts)
+* [Obter restrições de acesso](/rest/reference/branches#get-access-restrictions)
+* [Excluir restrições de acesso](/rest/reference/branches#delete-access-restrictions)
 * [Listar equipes com acesso ao branch protegido](/rest/reference/repos#list-teams-with-access-to-the-protected-branch)
-* [Adicionar restrições de acesso da equipe](/rest/reference/repos#add-team-access-restrictions)
-* [Definir restrições de acesso da equipe](/rest/reference/repos#set-team-access-restrictions)
-* [Remover restrição de acesso da equipe](/rest/reference/repos#remove-team-access-restrictions)
+* [Adicionar restrições de acesso da equipe](/rest/reference/branches#add-team-access-restrictions)
+* [Definir restrições de acesso da equipe](/rest/reference/branches#set-team-access-restrictions)
+* [Remover restrição de acesso da equipe](/rest/reference/branches#remove-team-access-restrictions)
 * [Listar restrições de usuário do branch protegido](/rest/reference/repos#list-users-with-access-to-the-protected-branch)
-* [Adicionar restrições de acesso do usuário](/rest/reference/repos#add-user-access-restrictions)
-* [Definir restrições de acesso do usuário](/rest/reference/repos#set-user-access-restrictions)
-* [Remover restrições de acesso do usuário](/rest/reference/repos#remove-user-access-restrictions)
-* [Mesclar um branch](/rest/reference/repos#merge-a-branch)
+* [Adicionar restrições de acesso do usuário](/rest/reference/branches#add-user-access-restrictions)
+* [Definir restrições de acesso do usuário](/rest/reference/branches#set-user-access-restrictions)
+* [Remover restrições de acesso do usuário](/rest/reference/branches#remove-user-access-restrictions)
+* [Mesclar um branch](/rest/reference/branches#merge-a-branch)
 
 #### Colaboradores do repositório
 
-* [Listar colaboradores do repositório](/rest/reference/repos#list-repository-collaborators)
-* [Verifique se um usuário é colaborador de um repositório](/rest/reference/repos#check-if-a-user-is-a-repository-collaborator)
-* [Adicionar colaborador de repositório](/rest/reference/repos#add-a-repository-collaborator)
-* [Remover um colaborador de repositório](/rest/reference/repos#remove-a-repository-collaborator)
-* [Obter permissões de repositório para um usuário](/rest/reference/repos#get-repository-permissions-for-a-user)
+* [Listar colaboradores do repositório](/rest/reference/collaborators#list-repository-collaborators)
+* [Verifique se um usuário é colaborador de um repositório](/rest/reference/collaborators#check-if-a-user-is-a-repository-collaborator)
+* [Adicionar colaborador de repositório](/rest/reference/collaborators#add-a-repository-collaborator)
+* [Remover um colaborador de repositório](/rest/reference/collaborators#remove-a-repository-collaborator)
+* [Obter permissões de repositório para um usuário](/rest/reference/collaborators#get-repository-permissions-for-a-user)
 
 #### Comentários do commit do repositório
 
-* [Listar comentários de commit para um repositório](/rest/reference/repos#list-commit-comments-for-a-repository)
-* [Obter um comentário de commit](/rest/reference/repos#get-a-commit-comment)
-* [Atualizar um comentário de commit](/rest/reference/repos#update-a-commit-comment)
-* [Excluir um comentário de commit](/rest/reference/repos#delete-a-commit-comment)
-* [Listar comentários de commit](/rest/reference/repos#list-commit-comments)
-* [Criar um comentário de commit](/rest/reference/repos#create-a-commit-comment)
+* [Listar comentários de commit para um repositório](/rest/reference/commits#list-commit-comments-for-a-repository)
+* [Obter um comentário de commit](/rest/reference/commits#get-a-commit-comment)
+* [Atualizar um comentário de commit](/rest/reference/commits#update-a-commit-comment)
+* [Excluir um comentário de commit](/rest/reference/commits#delete-a-commit-comment)
+* [Listar comentários de commit](/rest/reference/commits#list-commit-comments)
+* [Criar um comentário de commit](/rest/reference/commits#create-a-commit-comment)
 
 #### Commits do repositório
 
-* [Listar commits](/rest/reference/repos#list-commits)
-* [Obter um commit](/rest/reference/repos#get-a-commit)
-* [Listar branches para o commit principal](/rest/reference/repos#list-branches-for-head-commit)
+* [Listar commits](/rest/reference/commits#list-commits)
+* [Obter um commit](/rest/reference/commits#get-a-commit)
+* [Listar branches para o commit principal](/rest/reference/commits#list-branches-for-head-commit)
 * [Listar pull requests associados ao commit](/rest/reference/repos#list-pull-requests-associated-with-commit)
 
 #### Comunidade do repositório
 
 * [Obter o código de conduta para um repositório](/rest/reference/codes-of-conduct#get-the-code-of-conduct-for-a-repository)
 {% ifversion fpt or ghec %}
-* [Obter métricas do perfil da comunidade](/rest/reference/repos#get-community-profile-metrics)
+* [Obter métricas do perfil da comunidade](/rest/reference/repository-metrics#get-community-profile-metrics)
 {% endif %}
 
 #### Conteúdo do repositório
@@ -715,48 +705,46 @@ Embora a maior parte da interação da sua API deva ocorrer usando os tokens de 
 * [Obter um README do repositório](/rest/reference/repos#get-a-repository-readme)
 * [Obter a licença para um repositório](/rest/reference/licenses#get-the-license-for-a-repository)
 
-{% ifversion fpt or ghes or ghae or ghec %}
 #### Envio de eventos do repositório
 
 * [Criar um evento de envio de repositório](/rest/reference/repos#create-a-repository-dispatch-event)
-{% endif %}
 
 #### Hooks do repositório
 
-* [Listar webhooks de repositório](/rest/reference/repos#list-repository-webhooks)
-* [Criar um webhook do repositório](/rest/reference/repos#create-a-repository-webhook)
-* [Obter um webhook do repositório](/rest/reference/repos#get-a-repository-webhook)
-* [Atualizar um webhook do repositório](/rest/reference/repos#update-a-repository-webhook)
-* [Excluir um webhook do repositório](/rest/reference/repos#delete-a-repository-webhook)
-* [Fazer ping no webhook de um repositório](/rest/reference/repos#ping-a-repository-webhook)
+* [Listar webhooks de repositório](/rest/reference/webhooks#list-repository-webhooks)
+* [Criar um webhook do repositório](/rest/reference/webhooks#create-a-repository-webhook)
+* [Obter um webhook do repositório](/rest/reference/webhooks#get-a-repository-webhook)
+* [Atualizar um webhook do repositório](/rest/reference/webhooks#update-a-repository-webhook)
+* [Excluir um webhook do repositório](/rest/reference/webhooks#delete-a-repository-webhook)
+* [Fazer ping no webhook de um repositório](/rest/reference/webhooks#ping-a-repository-webhook)
 * [Testar o webhook do repositório de push](/rest/reference/repos#test-the-push-repository-webhook)
 
 #### Convites do repositório
 
-* [Listar convites para repositórios](/rest/reference/repos#list-repository-invitations)
-* [Atualizar um convite para um repositório](/rest/reference/repos#update-a-repository-invitation)
-* [Excluir um convite para um repositório](/rest/reference/repos#delete-a-repository-invitation)
-* [Listar convites de repositório para o usuário autenticado](/rest/reference/repos#list-repository-invitations-for-the-authenticated-user)
-* [Aceitar um convite de repositório](/rest/reference/repos#accept-a-repository-invitation)
-* [Recusar um convite de repositório](/rest/reference/repos#decline-a-repository-invitation)
+* [Listar convites para repositórios](/rest/reference/collaborators#list-repository-invitations)
+* [Atualizar um convite para um repositório](/rest/reference/collaborators#update-a-repository-invitation)
+* [Excluir um convite para um repositório](/rest/reference/collaborators#delete-a-repository-invitation)
+* [Listar convites de repositório para o usuário autenticado](/rest/reference/collaborators#list-repository-invitations-for-the-authenticated-user)
+* [Aceitar um convite de repositório](/rest/reference/collaborators#accept-a-repository-invitation)
+* [Recusar um convite de repositório](/rest/reference/collaborators#decline-a-repository-invitation)
 
 #### Chaves de repositório
 
-* [Listar chaves de implantação](/rest/reference/repos#list-deploy-keys)
-* [Criar uma chave de implantação](/rest/reference/repos#create-a-deploy-key)
-* [Obter uma chave de implantação](/rest/reference/repos#get-a-deploy-key)
-* [Excluir uma chave de implantação](/rest/reference/repos#delete-a-deploy-key)
+* [Listar chaves de implantação](/rest/reference/deployments#list-deploy-keys)
+* [Criar uma chave de implantação](/rest/reference/deployments#create-a-deploy-key)
+* [Obter uma chave de implantação](/rest/reference/deployments#get-a-deploy-key)
+* [Excluir uma chave de implantação](/rest/reference/deployments#delete-a-deploy-key)
 
 #### Páginas do repositório
 
-* [Obter um site do GitHub Pages](/rest/reference/repos#get-a-github-pages-site)
-* [Criar um site do GitHub Pages](/rest/reference/repos#create-a-github-pages-site)
-* [Atualizar informações sobre um site do GitHub Pages](/rest/reference/repos#update-information-about-a-github-pages-site)
-* [Excluir um site do GitHub Pages](/rest/reference/repos#delete-a-github-pages-site)
-* [Listar criações do GitHub Pages](/rest/reference/repos#list-github-pages-builds)
-* [Solicitar uma criação do GitHub Pages](/rest/reference/repos#request-a-github-pages-build)
-* [Obter uma criação do GitHub Pages](/rest/reference/repos#get-github-pages-build)
-* [Obter a última criação de páginas](/rest/reference/repos#get-latest-pages-build)
+* [Obter um site do GitHub Pages](/rest/reference/pages#get-a-github-pages-site)
+* [Criar um site do GitHub Pages](/rest/reference/pages#create-a-github-pages-site)
+* [Atualizar informações sobre um site do GitHub Pages](/rest/reference/pages#update-information-about-a-github-pages-site)
+* [Excluir um site do GitHub Pages](/rest/reference/pages#delete-a-github-pages-site)
+* [Listar criações do GitHub Pages](/rest/reference/pages#list-github-pages-builds)
+* [Solicitar uma criação do GitHub Pages](/rest/reference/pages#request-a-github-pages-build)
+* [Obter uma criação do GitHub Pages](/rest/reference/pages#get-github-pages-build)
+* [Obter a última criação de páginas](/rest/reference/pages#get-latest-pages-build)
 
 {% ifversion ghes %}
 #### Hooks pre-receive do repositório
@@ -783,11 +771,11 @@ Embora a maior parte da interação da sua API deva ocorrer usando os tokens de 
 
 #### Estatísticas do repositório
 
-* [Obter a atividade semanal do commit](/rest/reference/repos#get-the-weekly-commit-activity)
-* [Obter o último ano da atividade de commit](/rest/reference/repos#get-the-last-year-of-commit-activity)
-* [Obter toda a atividade do commit do contribuidor](/rest/reference/repos#get-all-contributor-commit-activity)
-* [Obter a contagem semanal do commit](/rest/reference/repos#get-the-weekly-commit-count)
-* [Obter a contagem do commit por hora para cada dia](/rest/reference/repos#get-the-hourly-commit-count-for-each-day)
+* [Obter a atividade semanal do commit](/rest/reference/repository-metrics#get-the-weekly-commit-activity)
+* [Obter o último ano da atividade de commit](/rest/reference/repository-metrics#get-the-last-year-of-commit-activity)
+* [Obter toda a atividade do commit do contribuidor](/rest/reference/repository-metrics#get-all-contributor-commit-activity)
+* [Obter a contagem semanal do commit](/rest/reference/repository-metrics#get-the-weekly-commit-count)
+* [Obter a contagem do commit por hora para cada dia](/rest/reference/repository-metrics#get-the-hourly-commit-count-for-each-day)
 
 {% ifversion fpt or ghec %}
 #### Alertas de vulnerabilidade de repositório
@@ -813,9 +801,9 @@ Embora a maior parte da interação da sua API deva ocorrer usando os tokens de 
 
 #### Status
 
-* [Obter o status combinado para uma referência específica](/rest/reference/repos#get-the-combined-status-for-a-specific-reference)
-* [Listar status de commit para uma referência](/rest/reference/repos#list-commit-statuses-for-a-reference)
-* [Criar um status de commit](/rest/reference/repos#create-a-commit-status)
+* [Obter o status combinado para uma referência específica](/rest/reference/commits#get-the-combined-status-for-a-specific-reference)
+* [Listar status de commit para uma referência](/rest/reference/commits#list-commit-statuses-for-a-reference)
+* [Criar um status de commit](/rest/reference/commits#create-a-commit-status)
 
 #### Discussões de equipe
 
@@ -838,10 +826,10 @@ Embora a maior parte da interação da sua API deva ocorrer usando os tokens de 
 {% ifversion fpt or ghec %}
 #### Tráfego
 
-* [Obter clones do repositório](/rest/reference/repos#get-repository-clones)
-* [Obter caminhos de referência superior](/rest/reference/repos#get-top-referral-paths)
-* [Obter fontes de referência superior](/rest/reference/repos#get-top-referral-sources)
-* [Obter visualizações de páginas](/rest/reference/repos#get-page-views)
+* [Obter clones do repositório](/rest/reference/repository-metrics#get-repository-clones)
+* [Obter caminhos de referência superior](/rest/reference/repository-metrics#get-top-referral-paths)
+* [Obter fontes de referência superior](/rest/reference/repository-metrics#get-top-referral-sources)
+* [Obter visualizações de páginas](/rest/reference/repository-metrics#get-page-views)
 {% endif %}
 
 {% ifversion fpt or ghec %}
@@ -925,7 +913,7 @@ Embora a maior parte da interação da sua API deva ocorrer usando os tokens de 
 * [Obter uso do workflow](/rest/reference/actions#get-workflow-usage)
 {% endif %}
 
-{% ifversion fpt or ghes > 3.1 or ghae-next or ghec %}
+{% ifversion fpt or ghes > 3.1 or ghae or ghec %}
 
 ## Leia mais
 

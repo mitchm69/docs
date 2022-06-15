@@ -1,6 +1,6 @@
 ---
 title: Gerenciar a cobrança de codespaces na sua organização
-shortTitle: Gerenciamento de cobrança para codespaces
+shortTitle: Gerenciar faturamento
 intro: 'Você pode verificar seu uso de {% data variables.product.prodname_codespaces %} e definir os limites de uso.'
 product: '{% data reusables.gated-features.codespaces %}'
 permissions: 'To manage billing for Codespaces for an organization, you must be an organization owner or a billing manager.'
@@ -37,9 +37,11 @@ Você pode definir um limite de uso para os codespaces na sua organização ou r
 
 Você também pode limitar os usuários individuais que podem usar {% data variables.product.prodname_codespaces %}. Para obter mais informações, consulte "[Gerenciando permissões de usuário para sua organização](/codespaces/managing-codespaces-for-your-organization/managing-user-permissions-for-your-organization)".
 
+É possível limitar a escolha dos tipos de máquina que estão disponíveis para repositórios pertencentes à sua organização. Isso permite evitar que as pessoas usem máquinas com recursos excessivos para seus codespaces. Para obter mais informações, consulte "[Restringindo o acesso aos tipos de máquina](/codespaces/managing-codespaces-for-your-organization/restricting-access-to-machine-types)."
+
 ## Excluindo codespaces não utilizados
 
-Seus usuários podem excluir seus codespaces em https://github.com/codespaces e no Visual Studio Code. Para reduzir o tamanho de um codespace, os usuários podem excluir arquivos manualmente usando o terminal ou no Visual Studio Code.
+Seus usuários podem excluir seus codespaces em https://github.com/codespaces e de dentro de {% data variables.product.prodname_vscode %}. Para reduzir o tamanho de um codespace, os usuários podem excluir arquivos manualmente usando o terminal ou de dentro de {% data variables.product.prodname_vscode_shortname %}.
 
 {% note %}
 

@@ -26,7 +26,7 @@ shortTitle: Disaster recovery
 
 In the case of a regional outage, we suggest you recreate your codespace in an unaffected region to continue working. この新しい codespace には、{% data variables.product.prodname_dotcom %} への最後のプッシュ時点までのすべての変更が含まれます。 For information on manually setting another region, see "[Setting your default region for Codespaces](/codespaces/managing-your-codespaces/setting-your-default-region-for-codespaces)."
 
-You can optimize recovery time by configuring a `devcontainer.json` in the project's repository, which allows you to define the tools, runtimes, frameworks, editor settings, extensions, and other configuration necessary to restore the development environment automatically. 詳しい情報については、「[プロジェクトの Codespaces を設定する](/codespaces/setting-up-your-codespace/configuring-codespaces-for-your-project)」を参照してください。
+You can optimize recovery time by configuring a `devcontainer.json` in the project's repository, which allows you to define the tools, runtimes, frameworks, editor settings, extensions, and other configuration necessary to restore the development environment automatically. For more information, see "[Introduction to dev containers](/codespaces/setting-up-your-codespace/configuring-codespaces-for-your-project)."
 
 ## オプション 2: リカバリを待つ
 
@@ -42,7 +42,7 @@ You can check the current service status on the [Status Dashboard](https://www.g
 
 ## オプション 4: ローカルのコンテナ化された環境にリモートコンテナとDockerを使用する
 
-リポジトリに `devcontainer.json` がある場合は、Visual Studio Code の [Remote-Containers 機能拡張](https://code.visualstudio.com/docs/remote/containers#_quick-start-open-a-git-repository-or-github-pr-in-an-isolated-container-volume)を使用して、リポジトリのローカル開発コンテナをビルドしてアタッチすることを検討してください。 このオプションのセットアップ時間は、ローカル仕様と開発コンテナセットアップの複雑さによって異なります。
+If your repository has a `devcontainer.json`, consider using the [Remote-Containers extension](https://code.visualstudio.com/docs/remote/containers#_quick-start-open-a-git-repository-or-github-pr-in-an-isolated-container-volume) in {% data variables.product.prodname_vscode %} to build and attach to a local development container for your repository. このオプションのセットアップ時間は、ローカル仕様と開発コンテナセットアップの複雑さによって異なります。
 
 {% note %}
 

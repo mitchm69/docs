@@ -26,7 +26,7 @@ A orientação a seguir fornece opções sobre como lidar com interrupções de 
 
 No caso de uma interrupção regional, sugerimos que recrie o seu codespace em uma região não afetada para continuar trabalhando. Este novo código terá todas as alterações a partir do seu último push para {% data variables.product.prodname_dotcom %}. Para obter informações sobre a configuração manual de outra região, consulte "[" Definir sua região padrão para os codespaces](/codespaces/managing-your-codespaces/setting-your-default-region-for-codespaces)".
 
-Você pode otimizar o tempo de recuperação configurando um `devcontainer.json` no repositório do projeto, que permite que você defina as ferramentas, tempo de execução, estruturas, configurações do editor, extensões e outras configurações necessárias para restaurar o ambiente de desenvolvimento automaticamente. Para obter mais informações, consulte "[Configurar codespaces para o seu projeto](/codespaces/setting-up-your-codespace/configuring-codespaces-for-your-project)".
+Você pode otimizar o tempo de recuperação configurando um `devcontainer.json` no repositório do projeto, que permite que você defina as ferramentas, tempo de execução, estruturas, configurações do editor, extensões e outras configurações necessárias para restaurar o ambiente de desenvolvimento automaticamente. Para obter mais informações, consulte "[Introdução a contêineres de desenvolvimento](/codespaces/setting-up-your-codespace/configuring-codespaces-for-your-project)".
 
 ## Opção 2: Aguardar a recuperação
 
@@ -42,7 +42,7 @@ Embora esta opção não configure um ambiente de desenvolvimento para você, el
 
 ## Opção 4: Usar contêineres remotos e o Docker para um ambiente contêinerizado local
 
-Se seu repositório tiver um `devcontainer.json`, considere o uso da [extensão Remote-Containers](https://code.visualstudio.com/docs/remote/containers#_quick-start-open-a-git-repository-or-github-pr-in-an-isolated-container-volume) no Visual Studio Code para criar e anexar a um contêiner de desenvolvimento local para seu repositório. O tempo de configuração desta opção irá variar dependendo das suas especificações locais e da complexidade da configuração do seu contêiner de desenvolvimento.
+Se o seu repositório tiver um `devcontainer.json`, considere o uso da [extensão Remote-Containers](https://code.visualstudio.com/docs/remote/containers#_quick-start-open-a-git-repository-or-github-pr-in-an-isolated-container-volume) em {% data variables.product.prodname_vscode %} para construir e anexar a um contêiner de desenvolvimento local para o seu repositório. O tempo de configuração desta opção irá variar dependendo das suas especificações locais e da complexidade da configuração do seu contêiner de desenvolvimento.
 
 {% note %}
 

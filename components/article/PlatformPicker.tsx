@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import Cookies from 'js-cookie'
-import { SubNav, TabNav, UnderlineNav } from '@primer/components'
+import { SubNav, TabNav, UnderlineNav } from '@primer/react'
 import { sendEvent, EventType } from 'components/lib/events'
+import { useRouter } from 'next/router'
 
 import { useArticleContext } from 'components/context/ArticleContext'
 import parseUserAgent from 'components/lib/user-agent'
@@ -12,9 +13,11 @@ const platforms = [
   { id: 'linux', label: 'Linux' },
 ]
 
+// Nota bene: platform === os
+
 // Imperatively modify article content to show only the selected platform
 // find all platform-specific *block* elements and hide or show as appropriate
-// example: {% mac } block content {% mac %}
+// example: {% mac %} block content {% endmac %}
 function showPlatformSpecificContent(platform: string) {
   const markdowns = Array.from(document.querySelectorAll<HTMLElement>('.extended-markdown'))
   markdowns
@@ -48,6 +51,7 @@ type Props = {
 export const PlatformPicker = ({ variant = 'subnav' }: Props) => {
   const { defaultPlatform, detectedPlatforms } = useArticleContext()
   const [currentPlatform, setCurrentPlatform] = useState(defaultPlatform || '')
+  const { asPath } = useRouter()
 
   // Run on mount for client-side only features
   useEffect(() => {
@@ -61,7 +65,7 @@ export const PlatformPicker = ({ variant = 'subnav' }: Props) => {
 
     // always trigger this on initial render. if the default doesn't change the other useEffect won't fire
     showPlatformSpecificContent(platform)
-  }, [])
+  }, [asPath])
 
   // Make sure we've always selected a platform that exists in the article
   useEffect(() => {
@@ -133,6 +137,16 @@ export const PlatformPicker = ({ variant = 'subnav' }: Props) => {
               data-platform={option.id}
               as="button"
               selected={option.id === currentPlatform}
+              // Temporary fix: This should be removed when this merges: PR 24123
+              sx={{
+                color: 'var(--color-fg-default)',
+                '&.selected': { color: 'var(--color-fg-default)' },
+                ':hover': { color: 'var(--color-fg-default)' },
+                ':focus': {
+                  color: 'var(--color-fg-default)',
+                  outline: '-webkit-focus-ring-color auto 1px;',
+                },
+              }}
               onClick={() => {
                 onClickPlatform(option.id)
               }}
